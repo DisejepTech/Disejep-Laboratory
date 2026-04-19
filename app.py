@@ -1,10 +1,26 @@
 import streamlit as st
+from PIL import Image
 
-st.set_page_config(page_title="Disejep Laboratory", page_icon="🔬")
+# Operational Configuration
+st.set_page_config(page_title="Disejep Laboratory", layout="wide")
 
+# --- VISUAL HEADER ---
+try:
+    header_source = Image.open("01 BANNER BUENO DISEJEP.jpg")
+    st.image(header_source, use_container_width=True)
+except Exception:
+    pass
+
+# --- CORE INTERFACE ---
 st.title("Disejep Laboratory")
-st.write("Registered Trademark: OJ")
-st.balloons()
-st.subheader("Perceptual Systems Lab")
-st.write("More than one, less than infinity.")
-st.info("If you can read this, it's because we've already put our shoes on.")
+st.caption("Registered Trademark: OJ")
+st.divider()
+
+# --- DATA INPUT ---
+st.write("Source input for deterministic processing:")
+input_data = st.file_uploader("Select Source File", type=["jpg", "jpeg", "png", "tiff"], label_visibility="collapsed")
+
+if input_data is not None:
+    sample = Image.open(input_data)
+    st.image(sample, caption="Input Data Stream", width=600)
+    st.info("Source successfully synchronized.")
