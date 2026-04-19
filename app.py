@@ -1,15 +1,17 @@
 import streamlit as st
 from PIL import Image
+import os
 
 # Operational Configuration
 st.set_page_config(page_title="Disejep Laboratory", layout="wide")
 
-# --- VISUAL HEADER ---
-try:
-    header_source = Image.open("01 BANNER BUENO DISEJEP.jpg")
+# --- VISUAL HEADER (The Bridge) ---
+# Forzamos la búsqueda del archivo en el directorio raíz
+banner_path = "01 BANNER BUENO DISEJEP.jpg"
+
+if os.path.exists(banner_path):
+    header_source = Image.open(banner_path)
     st.image(header_source, use_container_width=True)
-except Exception:
-    pass
 
 # --- CORE INTERFACE ---
 st.title("Disejep Laboratory")
